@@ -1,0 +1,11 @@
+swiftmailer:
+    # Penser à désactiver dans le .env la ligne MAILER_URL
+    url: '%env(MAILER_URL)%'
+    spool: { type: 'memory' }
+    transport: smtp
+    auth_mode: login
+    port: 465
+    host: mon_hote
+    username: mon_identifiant
+    password: mon_mot_de_passe
+    encryption: ssl

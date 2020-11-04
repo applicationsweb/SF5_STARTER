@@ -1,0 +1,74 @@
+{% extends 'base_security.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="login-box">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    
+    <div class="login-logo">
+        <a href="{{ path('front_index') }}"><b>Symfony5 Starter</b> <small> - v1.0.0</small></a>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">
+                <strong>Connectez-vous</strong> pour accéder à la plateforme !
+            </p><hr>
+
+            <p>
+                Compte Super administrateur :<br>
+                    ID => <strong>admin</strong><br>
+                    MDP => <strong>Superadmin,12345</strong>
+            </p>
+
+            <form action="{{ path('app_login') }}" method="post" autocomplete="false">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="input-group mb-3">
+                    <input value="{{ last_username }}" type="text" class="form-control" name="username" id="inputUsername" placeholder="Identifiant" required autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Mot de passe" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                        <input type="checkbox" id="remember_me" name="_remember_me">
+                        <label name="remember_me" for="remember_me">
+                            Se souvenir de moi
+                        </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block">C'est parti !</button>
+                    </div>
+                </div>
+            </form><hr>
+
+            <p class="mb-1">
+                <a href="{{ path('app_forgot_password_request') }}" title="Mot de passe oublié">Mot de passe oublié</a>
+            </p>
+            <p class="mb-1">
+                <a href="{{ path('app_register') }}" class="text-center" title="Inscription">Inscription</a>
+            </p>
+            <p class="mb-0">
+                <a href="{{ path('front_index') }}" class="text-center" title="Accueil">Accueil</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

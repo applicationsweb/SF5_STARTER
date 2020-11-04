@@ -1,0 +1,12 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Gérants{% endblock %}
+{% block breadcrumb_title %}<i class="nav-icon fas fa-cog mr-2"></i>Gérants{% endblock %}
+{% block breadcrumb_content %}
+<li class="breadcrumb-item"><a href="{{ path('gerant_index') }}" title="Gérants">Gérants</a></li>
+<li class="breadcrumb-item active">Modifier</li>
+{% endblock %}
+
+{% block body %}
+{{ include('gerant/_form.html.twig') }}
+{% endblock %}

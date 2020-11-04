@@ -1,0 +1,9 @@
+<h1>Bonjour !</h1>
+
+<p>Pour ré-initialiser votre mot de passe, merci de cliquer sur le lien suivant :</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien expire dans {{ tokenLifetime|date('g') }} heure(s).</p>
+
+<p>A bientôt ! Symfony5 Starter</p>

@@ -1,0 +1,80 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+{% block breadcrumb_title %}Profil{% endblock %}
+{% block breadcrumb_content %}
+<li class="breadcrumb-item active">Profil</li>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/profil.jpg') }}" alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{ app.user.prenom|capitalize~" "~app.user.nom|capitalize }}</h3>
+
+                <p class="text-muted text-center">
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    Super administrateur
+                {% elseif is_granted('ROLE_ADMIN') %}
+                    Administrateur
+                {% elseif is_granted('ROLE_MANAGER') %}
+                    Manageur
+                {% else %}
+                    Utilisateur
+                {% endif %}
+                </p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        {{ app.user.email }}
+                    </li>
+                    <li class="list-group-item">
+                        Inscrit le : {{ app.user.creation|date('d/m/Y') }}
+                    </li>
+                </ul>
+
+                <a href="{{ path('account_admin_password') }}" title="Modifier mon mot de passe" class="btn btn-primary btn-block btn-sm">Modifier mon mot de passe</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Modifier mes informations de profil</h3>
+            </div>
+
+            {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(form.prenom) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.nom) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" title="Modifier mon profil" class="btn btn-primary btn-sm float-right">Modifier mon profil</button>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

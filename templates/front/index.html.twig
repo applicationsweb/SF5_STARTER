@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="jumbotron jumbotron-fluid mb-0">
+  <div class="container">
+    <h1 class="display-4"><img width="80" src="{{ asset('images/logo.png') }}" alt="SF5" class="mr-2">Symfony5 Starter <small>v1.0.0</small></h1>
+    <p class="lead">Démarrer rapidement une application Web sur-mesure avec le Framework Symfony 5.</p>
+    <hr class="my-4">
+    <p>
+        Version actuelle : <span class="text-muted">Symfony 5.1.8 / PHP : 7.2.*</span><br>
+        Documentation Symfony : <a href="https://symfony.com/doc/current/index.html" title="Documentation Symfony">https://symfony.com/doc/current/index.html</a><br>
+        Dépôt GitHub : <a href="#" title="Dépôt GitHub"></a><br>
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ path('app_login') }}" role="button" title="Connexion">Connexion</a>
+    </p>
+  </div>
+</div>
+
+<div class="alert alert-info alert-dismissible">
+    <div class="container">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-info"></i> A faire !</h5>
+        <ul>
+            <li>une version SF5 Starter avec WebPack</li>
+            <li>autres...</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-spinner mr-2"></i>
+                        Installation du projet
+                    </h3>
+                </div>
+                <div class="card-body">
+                    1. Clôner le projet<br>
+                    <kbd>$ git clone *******</kbd>
+                    <br><br>
+
+                    2. Installer le projet<br>
+                    <kbd>$ composer update</kbd>
+                    <br><br>
+
+                    3. Configurer le projet<br>
+                    <pre><code>Dans le fichier .env :
+
+#Configurer le serveur de mail
+MAILER_DSN=smtp://login:password@hostname:port
+
+#Configurer la base de données
+DATABASE_URL=mysql://root:@127.0.0.1:3306/sf5starter?serverVersion=5.7
+</code></pre>
+                    4. Créer la base de données<br>
+                    <kbd>$ php bin/console doctrine:database:create</kbd>
+                    <br><br>
+
+                    5. Générer les tables<br>
+                    <kbd>$ php bin/console doctrine:migrations:migrate</kbd>
+                    <br><br>
+
+                    6. Générer de faux comptes<br>
+                    <kbd>$ php bin/console doctrine:fixtures:load</kbd>
+                    <br><br>
+
+                    7. Démarrer le projet<br>
+                    <kbd>$ symfony server:start</kbd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Côté Front-office
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Thème AdminLTE 3 : le thème est installé dans le projet afin de faciliter les développements : <a href="https://adminlte.io/themes/dev/AdminLTE/index.html" title="Admin LTE3">http://127.0.0.1:8000/adminLTE/</a></li>
+                        <li>FontAwesome</li>
+                        <li>jQuery</li>
+                        <li>Bootstrap4</li>
+                        <li>Page de connexion : <a href="{{ path('app_login') }}" title="Connexion">Connexion</a></li>
+                        <li>Page d'inscription (par défaut un rôle ROLE_USER) (confirmation par e-mail avec symfonycasts/verify-email-bundle) : <a href="{{ path('app_register') }}" title="Inscription">Inscription</a></li>
+                        <li>Page de profil utilisateur : <a href="{{ path('account_profile') }}" title="Profil">Profil</a></li>
+                        <li>Page de modification du mot de passe : <a href="{{ path('account_password') }}" title="Modifier le mot de passe">Modifier le mot de passe</a></li>
+                        <li>Pages pour la gestion du mot de passe oublié (bundles symfonycasts/reset-password-bundle et symfonycasts/verify-email-bundle) : <a href="{{ path('app_forgot_password_request') }}" title="Mot de passe oublié">Mot de passe oublié</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>  
+         
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Côté Back-office
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <li>Thème AdminLTE 3 : le thème est installé dans le projet afin de faciliter les développements : <a href="https://adminlte.io/themes/dev/AdminLTE/index.html" title="Admin LTE3">http://127.0.0.1:8000/adminLTE/</a></li>
+                    <li>3 rôles : Manageur (ROLE_MANAGER) < Administrateur (ROLE_ADMIN) < Super administrateur (ROLE_SUPER_ADMINISTRATEUR)</li>
+                    <li>FontAwesome</li>
+                    <li>IonIcons</li>
+                    <li>ICheck</li>
+                    <li>Overlay Scrollbars</li>
+                    <li>jQuery</li>
+                    <li>jQuery UI</li>
+                    <li>Bootstrap4</li>
+                    <li>Select2</li>
+                    <li>Datatables</li>
+                    <li>FosJsRoutingBundle : utlisation des routes dans les sources Javascript</li>
+                    <li>DoctrineFixturesBundle + FakerBundle : génération de fausses données</li>
+                    <li>Symfony Mailer</li>
+                    <li>SwiftMailer</li>
+                    <li>Page de profil</li>
+                    <li>Page de modification du mot de passe</li>
+                    <li>Déconnection</li>
+                    <li>Module Gérants : visualisation/ajout/modification/suppression d'un gérant</li>
+                </div>
+            </div>
+        </div>                
+    </div>
+</div>
+
+<footer class="main-footer ml-0">
+    <strong>Copyright &copy; {{ 'now'|date('Y') }} - <a href="https://www.applicationsweb.fr">ApplicationsWeb.fr</a> - </strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0.0
+    </div>
+</footer>
+{% endblock %}

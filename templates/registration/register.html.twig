@@ -1,0 +1,50 @@
+{% extends 'base_security.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="login-box">
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    
+    <div class="login-logo">
+        <a href="{{ path('front_index') }}"><b>Symfony5 Starter</b> <small> - v1.0.0</small></a>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg"><strong>Inscrivez-vous</strong> sur la plateforme pour accéder à l'application.</p>
+
+            {{ form_start(registrationForm) }}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.prenom) }}
+                {{ form_row(registrationForm.nom) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.password) }}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="icheck-primary">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            {{ form_label(registrationForm.agreeTerms) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block">Inscription</button>
+                    </div>
+                </div>
+            {{ form_end(registrationForm) }}<hr>
+
+            <p class="mb-1">
+                <a href="{{ path('app_login') }}" class="text-center">Connexion</a>
+            </p>
+            <p class="mb-0">
+                <a href="{{ path('front_index') }}" class="text-center" title="Accueil">Accueil</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

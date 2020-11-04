@@ -1,0 +1,18 @@
+.container {
+    padding-top: 50px;
+}
+
+/* Etoile rouge champ obligatoire */
+label.required:after, legend.required:after {
+    content: "*";
+    color: red;
+}
+
+/* Ecart entre les row des formulaires + erreurs en rouge */
+form ul {
+    color: red;
+}
+
+.form-row {
+    margin-bottom: 10px;
+}

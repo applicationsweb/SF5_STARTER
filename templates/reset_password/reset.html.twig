@@ -1,0 +1,30 @@
+{% extends 'base_security.html.twig' %}
+
+{% block title %}Mot de passe oublié{% endblock %}
+
+{% block body %}
+<div class="login-box">
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="login-logo">
+        <a href="{{ path('front_index') }}"><b>Symfony5 Starter</b> <small> - v1.0.0</small></a>
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg"><strong>Ré-initialisation</strong> de votre mot de passe.</p>
+
+            {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block">Enregistrer</button>
+                    </div>
+                </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

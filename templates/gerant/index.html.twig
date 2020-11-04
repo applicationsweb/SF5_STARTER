@@ -1,0 +1,71 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Gérants{% endblock %}
+{% block breadcrumb_title %}<i class="nav-icon fas fa-cog mr-2"></i>Gérants{% endblock %}
+{% block breadcrumb_content %}
+<li class="breadcrumb-item active">Gérants</li>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Liste des gérants</h3>
+                <a href="{{ path('gerant_new') }}" title="Ajouter" class="btn btn-primary btn-sm float-right"><i class="nav-icon fas fa-plus mr-2"></i>Ajouter</a>
+            </div>
+
+            <div class="card-body">
+                <table id="dataTable" class="table table-bordered table-striped" role="grid">
+                    <thead>
+                        <tr>
+                            <th>Nom d'utilisateur</th>
+                            <th>Adresse e-mail</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Rôle</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.prenom|capitalize }}</td>
+                            <td>{{ user.nom|capitalize }}</td>
+                            <td>
+                                {% if securizer.isGranted(user, "ROLE_SUPER_ADMIN") %}
+                                    Super Administrateur
+                                {% elseif securizer.isGranted(user, "ROLE_ADMIN") %}
+                                    Administrateur
+                                {% else %}
+                                    Manageur
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('gerant_show', {id: user.id}) }}" title="Voir" class="mr-2"><i class="fas fa-eye"></i></a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gerant_edit', {id: user.id}) }}" title="Modifier" class="mr-2"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ path('gerant_delete', {id: user.id}) }}" title="Supprimer" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce gérant ?');"><i class="fas fa-trash text-danger"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nom d'utilisateur</th>
+                            <th>Adresse e-mail</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>                            
+                            <th>Rôle</th>
+                            <th>Action</th>
+                        </tr>                    
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

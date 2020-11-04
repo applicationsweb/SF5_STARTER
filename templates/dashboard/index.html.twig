@@ -1,0 +1,24 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+{% block breadcrumb_title %}<i class="nav-icon fas fa-tachometer-alt mr-2"></i>Tableau de bord{% endblock %}
+{% block breadcrumb_content %}
+<li class="breadcrumb-item active">Tableau de bord</li>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <a href="{{ path('gerant_index') }}" title="Consulter les gérants" class="text-dark">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-cog"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Gérants</span>
+                    <span class="info-box-number">{{ gerants }}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

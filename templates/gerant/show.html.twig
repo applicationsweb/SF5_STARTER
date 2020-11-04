@@ -1,0 +1,42 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Gérants{% endblock %}
+{% block breadcrumb_title %}Gérants{% endblock %}
+{% block breadcrumb_content %}
+<li class="breadcrumb-item"><a href="{{ path('gerant_index') }}" title="Gérants">Gérants</a></li>
+<li class="breadcrumb-item active">Voir</li>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Détails du Gérant</h3>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Identifiant</dt>
+                    <dd class="col-sm-8">{{ user.username }}</dd>
+                    <dt class="col-sm-4">E-mail</dt>
+                    <dd class="col-sm-8">{{ user.email }}</dd>
+                    <dt class="col-sm-4">Prénom</dt>
+                    <dd class="col-sm-8">{{ user.prenom|capitalize }}</dd>
+                    <dt class="col-sm-4">Nom</dt>
+                    <dd class="col-sm-8">{{ user.nom|capitalize }}</dd>
+                    <dt class="col-sm-4">Rôle</dt>
+                    <dd class="col-sm-8">
+                    {% if securizer.isGranted(user, "ROLE_SUPER_ADMIN") %}
+                        Super Administrateur
+                    {% elseif securizer.isGranted(user, "ROLE_ADMIN") %}
+                        Administrateur
+                    {% else %}
+                        Manageur
+                    {% endif %}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}    

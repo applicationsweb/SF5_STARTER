@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Ajouter un gérant</h3>
+            </div>
+
+            {{ form_start(form) }}
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(form.prenom) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.nom) }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        {% if not edit %}
+                        <div class="col-md-6">
+                            {{ form_row(form.password) }}
+                        </div>
+                        {% endif %}
+                        <div class="col-md-6">
+                            {{ form_row(form.roles) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" title="Enregistrer" class="btn btn-primary btn-sm">Enregistrer</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

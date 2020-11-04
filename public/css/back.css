@@ -1,0 +1,31 @@
+/* Etoile rouge champ obligatoire */
+label.required:after, legend.required:after {
+    content: "*";
+    color: red;
+}
+
+/* Ecart entre les row des formulaires + erreurs en rouge */
+form ul {
+    color: red;
+}
+
+.form-row {
+    margin-bottom: 10px;
+}
+
+/* Hauteur des select2 = form-control-sm */
+.select2 {
+    width: 100%!important;
+}
+
+.select2-selection {
+    height: 20px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-top: 2px;
+}
+
+.select2-selection__choice {
+    color: black!important;
+}
